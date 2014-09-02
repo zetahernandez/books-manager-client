@@ -1,6 +1,6 @@
 {
-  "name": "ng-boilerplate",
-  "version": "0.3.2",
+  "name": "books-manager-client",
+  "version": "0.0.0",
   "devDependencies": {
     "angular": "~1.2",
     "angular-mocks": "~1.2",
@@ -8,5 +8,9 @@
     "angular-bootstrap": "~0.10.0",
     "angular-ui-router": "~0.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "angular-resource": "~1.2.23",
+    "angular-cookies": "~1.2.23",
+    "angular-sanitize": "~1.2.23"
+  }
 }
