@@ -1,4 +1,3 @@
-'use strict';
 angular.module('books-manager', [
   'templates-app',
   'templates-common',
@@ -7,7 +6,7 @@ angular.module('books-manager', [
   'ui.router',
   'ngCookies',
   'ngResource',
-  'ngSanitize',
+  'ngSanitize'
 ])
 
 .config(function myAppConfig($stateProvider, $urlRouterProvider) {
