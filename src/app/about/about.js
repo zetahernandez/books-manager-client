@@ -1,6 +1,5 @@
 angular.module( 'books-manager.about', [
   'ui.router',
-  'placeholders',
   'ui.bootstrap'
 ])
 
