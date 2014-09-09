@@ -3,19 +3,22 @@ angular.module('books-manager', [
   'templates-common',
   'books-manager.home',
   'books-manager.about',
+  'books-manager.login',
+  'books-manager.signup',
   'books-manager.services.Auth',
   'ui.router',
   'ngLocale',
   'ngCookies',
   'ngResource',
-  'ngSanitize'
+  'ngSanitize',
+  'http-auth-interceptor'
 ])
 
 .config(function myAppConfig($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/home');
 })
 
-.run(function run($rootScope, $location, Auth) {
+.run(function run($rootScope, $location, $state, Auth) {
 
   //watching the value of the currentUser variable.
   $rootScope.$watch('currentUser', function(currentUser) {
@@ -25,10 +28,10 @@ angular.module('books-manager', [
       Auth.currentUser();
     }
   });
-  
+
   // On catching 401 errors, redirect to the login page.
   $rootScope.$on('event:auth-loginRequired', function() {
-    $location.path('/login');
+    $state.go('login');
     return false;
   });
 })

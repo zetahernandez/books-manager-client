@@ -23,14 +23,13 @@ angular.module( 'books-manager.signup', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'LoginCtrl', function SignUpController( $scope, Auth, $location ) {
-    $scope.error = {};
-    $scope.user = {};
-
-    $scope.login = function(form) {
-      Auth.login('password', {
-          'email': $scope.user.email,
-          'password': $scope.user.password
+.controller( 'SignUpCtrl', function SignUpController( $scope, Auth, $location ) {
+    $scope.register = function(form) {
+      Auth.createUser({
+          email: $scope.user.email,
+          name: $scope.user.username,
+          username: $scope.user.username,
+          password: $scope.user.password
         },
         function(err) {
           $scope.errors = {};
@@ -42,8 +41,8 @@ angular.module( 'books-manager.signup', [
               form[field].$setValidity('mongoose', false);
               $scope.errors[field] = error.type;
             });
-            $scope.error.other = err.message;
           }
-      });
+        }
+      );
     };
   });

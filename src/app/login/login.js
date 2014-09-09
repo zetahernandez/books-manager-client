@@ -9,7 +9,7 @@ angular.module( 'books-manager.login', [
  * this way makes each module more "self-contained".
  */
 .config(function config( $stateProvider ) {
-  $stateProvider.state( 'home', {
+  $stateProvider.state( 'login', {
     url: '/login',
     views: {
       "main": {

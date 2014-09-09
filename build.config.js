@@ -70,6 +70,7 @@ module.exports = {
       'vendor/angular-cookies/angular-cookies.js',
       'vendor/angular-resource/angular-resource.js',
       'vendor/angular-sanitize/angular-sanitize.js',
+      'vendor/angular-http-auth/src/http-auth-interceptor.js'
     ],
     css: [],
     assets: []
