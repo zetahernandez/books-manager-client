@@ -75,6 +75,10 @@ angular.module('books-manager.services.Auth', ['books-manager.resources.Session'
             }, function(err) {
                 return cb(err.data);
             });
+        },
+
+        isAuthenticated: function() {
+            return !!$rootScope.currentUser;
         }
     };
 });

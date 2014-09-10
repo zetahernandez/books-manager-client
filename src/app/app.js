@@ -1,6 +1,7 @@
 angular.module('books-manager', [
   'templates-app',
   'templates-common',
+  'books-manager.navbar',
   'books-manager.home',
   'books-manager.about',
   'books-manager.login',
@@ -24,14 +25,17 @@ angular.module('books-manager', [
   $rootScope.$watch('currentUser', function(currentUser) {
     // if no currentUser and on a page that requires authorization then try to update it
     // will trigger 401s if user does not have a valid session
-    if (!currentUser && (['/', '/login', '/logout', '/signup'].indexOf($location.path()) == -1)) {
+    if (!currentUser && (['', '/', '/login', '/logout', '/signup'].indexOf($location.path()) == -1)) {
       Auth.currentUser();
     }
   });
 
   // On catching 401 errors, redirect to the login page.
   $rootScope.$on('event:auth-loginRequired', function() {
-    $state.go('login');
+    if (['', '/', '/login', '/logout', '/signup', '/home'].indexOf($location.path()) == -1) {
+      $state.go('login');
+    }
+
     return false;
   });
 })
