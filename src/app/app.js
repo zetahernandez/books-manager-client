@@ -6,6 +6,7 @@ angular.module('books-manager', [
   'books-manager.about',
   'books-manager.login',
   'books-manager.signup',
+  'books-manager.upload',
   'books-manager.services.Auth',
   'ui.router',
   'ngLocale',

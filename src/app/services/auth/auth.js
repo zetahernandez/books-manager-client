@@ -3,9 +3,9 @@ angular.module('books-manager.services.Auth', ['books-manager.resources.Session'
 .factory('Auth', function Auth($location, $rootScope, Session, User, $cookieStore) {
     $rootScope.currentUser = $cookieStore.get('user') || null;
     $cookieStore.remove('user');
-
+    
     return {
-
+        
         login: function(provider, user, callback) {
             var cb = callback || angular.noop;
             Session.save({
@@ -75,10 +75,6 @@ angular.module('books-manager.services.Auth', ['books-manager.resources.Session'
             }, function(err) {
                 return cb(err.data);
             });
-        },
-
-        isAuthenticated: function() {
-            return !!$rootScope.currentUser;
         }
     };
 });

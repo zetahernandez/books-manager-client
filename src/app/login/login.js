@@ -1,4 +1,4 @@
-angular.module( 'books-manager.login', [
+angular.module('books-manager.login', [
   'ui.router',
   'books-manager.services.Auth'
 ])
@@ -8,43 +8,49 @@ angular.module( 'books-manager.login', [
  * will handle ensuring they are all available at run-time, but splitting it
  * this way makes each module more "self-contained".
  */
-.config(function config( $stateProvider ) {
-  $stateProvider.state( 'login', {
+.config(function config($stateProvider) {
+  $stateProvider.state('login', {
     url: '/login',
     views: {
+      "navbar": {
+        controller: 'NavBarCtrl',
+        templateUrl: 'navbar/navbar.tpl.html'
+      },
       "main": {
         controller: 'LoginCtrl',
         templateUrl: 'login/login.tpl.html'
       }
     },
-    data:{ pageTitle: 'Login' }
+    data: {
+      pageTitle: 'Login'
+    }
   });
 })
 
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'LoginCtrl', function LoginController( $scope, Auth, $location ) {
-    $scope.error = {};
-    $scope.user = {};
+.controller('LoginCtrl', function LoginController($scope, Auth, $location) {
+  $scope.error = {};
+  $scope.user = {};
 
-    $scope.login = function(form) {
-      Auth.login('password', {
-          'email': $scope.user.email,
-          'password': $scope.user.password
-        },
-        function(err) {
-          $scope.errors = {};
+  $scope.login = function(form) {
+    Auth.login('password', {
+        'email': $scope.user.email,
+        'password': $scope.user.password
+      },
+      function(err) {
+        $scope.errors = {};
 
-          if (!err) {
-            $location.path('/');
-          } else {
-            angular.forEach(err.errors, function(error, field) {
-              form[field].$setValidity('mongoose', false);
-              $scope.errors[field] = error.type;
-            });
-            $scope.error.other = err.message;
-          }
+        if (!err) {
+          $location.path('/');
+        } else {
+          angular.forEach(err.errors, function(error, field) {
+            form[field].$setValidity('mongoose', false);
+            $scope.errors[field] = error.type;
+          });
+          $scope.error.other = err.message;
+        }
       });
-    };
-  });
+  };
+});

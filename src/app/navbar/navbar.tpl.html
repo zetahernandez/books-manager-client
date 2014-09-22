@@ -1,5 +1,4 @@
-<div class="container">
-  <div class="navbar navbar-default">
+<div class="navbar">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" ng-init="menuCollapsed = true"
       ng-click="menuCollapsed = ! menuCollapsed">
@@ -9,6 +8,7 @@
       <span class="icon-bar"></span>
     </button>
     <div class="navbar-brand">
+      <div class="fa fa-book"></div>
       Books
     </div>
   </div>
@@ -39,16 +39,18 @@
         </a>
       </li>
     </ul>
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="nav navbar-nav navbar-right nav">
+      <li ng-show="isAuthenticated"><a href ui-sref="upload"><i class="fa fa-upload"></i> Upload Books</a></li>
+      <li ng-show="isAuthenticated"><a href><i class="fa fa-user "></i> {{currentUser.name}}</a></li>
       <li>
-        <a href="https://github.com/ngbp/ngbp/issues">
-          <i class="fa fa-comments"></i>
+        <a href="https://github.com/zetahernandez/books-manager">
+          <i class="fa fa-comments "></i>
           Support
         </a>
       </li>
-      <li ng-show="isAuthenticated" ng-click="logout()"><a href>logout</a></li>
-      <li ng-show="!isAuthenticated" ><a ui-sref="login">login</a></li>
-    </ul>
+      <li ng-show="isAuthenticated" ng-click="logout()"><a href><i class="fa fa-sign-out "></i> logout</a></li>
+      <li class="button" ng-show="!isAuthenticated"><a ui-sref="login"><i class="fa fa-sign-in "></i> Sign in</a></li>
+    </ul> 
   </div>
 </div>
-</div>
+<div class="container" ui-view="title"></div>
