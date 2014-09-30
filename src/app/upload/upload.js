@@ -47,8 +47,15 @@
    * And of course we define a controller for our route.
    */
   .controller('UploadCtrl', function UploadController($scope, Auth, $location, Upload) {
+    $scope.uploader = {};
     $scope.successUpload = function(flowFile, message) {
-      console.log(flowFile);
-      Upload.get({identifier: flowFile.uniqueIdentifier},function() {});
-    };
+      var currentFile = flowFile;
+      Upload.get({identifier: flowFile.uniqueIdentifier }, function(result) {
+        if(result.error){
+          currentFile.errorStatus = result.error;
+        }else{
+          currentFile.volume = result;
+        }
+      });
+   };
   });
