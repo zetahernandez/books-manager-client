@@ -1,6 +1,6 @@
 angular.module('books-manager.resources.Upload', ['ngResource'])
 	.factory('Upload', function($resource) {
-		return $resource('/api/upload/:identifier', {
+		return $resource('/api/uploaded/:identifier', {
 			identifier: '@id'
 		}, {
 			'update': {

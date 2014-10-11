@@ -1,0 +1,26 @@
+{
+  "curly": true,
+  "immed": true,
+  "newcap": true,
+  "noarg": true,
+  "sub": true,
+  "boss": true,
+  "eqnull": true,
+  "browser": true,
+  "indent": 2,
+  "undef": true,
+  "unused": true,
+  "globals": {
+    "angular": true,
+    "gapi": true,
+    "console": false,
+    "require": false,
+    "describe": true,
+    "expect": true,
+    "it": true,
+    "after": true,
+    "beforeEach": true,
+    "inject": true,
+    "module": true
+  }
+}
