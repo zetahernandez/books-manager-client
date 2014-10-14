@@ -48,16 +48,22 @@ angular.module('books-manager.upload', [
  */
 .controller('UploadCtrl', function UploadController($scope, Auth, $location, Upload) {
   $scope.uploader = {};
-  $scope.successUpload = function(flowFile, message) {
-    console.log('mesage: ' + message);
-    var currentFile = flowFile;
+   
+  $scope.fileAdded = function(flowFile /*, message*/) {
+    flowFile.imageSrc = "http://www.albumdigital.net/wp-content/themes/Source/images/no_image.jpg";
+  };
+
+  $scope.successUpload = function(flowFile /*, message*/) {
+    flowFile.processing = true;
     Upload.get({
       identifier: flowFile.uniqueIdentifier
     }, function(result) {
+      flowFile.processing = false;
       if (result.error) {
-        currentFile.errorStatus = result.error;
+        flowFile.errorStatus = result.error;
       } else {
-        currentFile.volume = result;
+        flowFile.volume = result;
+        flowFile.imageSrc  = result.volumeInfo.imageLinks.small;
       }
     });
   };
